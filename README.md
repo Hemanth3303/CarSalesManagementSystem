@@ -5,5 +5,5 @@ A Car Sales Management System, made using Java and MySQL as group project for DB
 * [Gowtham](https://example.com/)
 * [Hemanth](https://github.com/Hemanth3303)
 * [Jasna](https://example.com/)(Group Leader)
-* [Jaydeep](https://example.com/)
+* [Jayadeep](https://example.com/)
 * [Jemin](https://example.com/)
