@@ -1,6 +1,7 @@
-package carmgmt.gui;
+package carmgmt;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class WindowFrame extends JFrame {
 	public WindowFrame(int width, int height) {

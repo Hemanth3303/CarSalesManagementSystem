@@ -1,17 +1,14 @@
 package carmgmt;
 
-import carmgmt.core.SQLManager;
-import carmgmt.gui.WindowFrame;
-
-import javax.swing.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import carmgmt.login.UserLoginPanel;
 
 public class Application {
-	public static void main(String[] args) {
-		SQLManager sqlManager=new SQLManager();
-		sqlManager.executeSQL("Show tables;");
+	WindowFrame windowFrame;
+	public Application() {
+		windowFrame=new WindowFrame(640, 480);
+		UserLoginPanel userLoginPanel=new UserLoginPanel(640, 480);
 		
-		SwingUtilities.invokeLater(()->new WindowFrame(640, 480));
+		userLoginPanel.attachTo(windowFrame);
+		
 	}
 }

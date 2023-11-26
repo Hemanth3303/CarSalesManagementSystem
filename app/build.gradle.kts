@@ -30,7 +30,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass.set("carmgmt.Application")
+    mainClass.set("carmgmt.Main")
 }
 
 tasks.named<Test>("test") {
