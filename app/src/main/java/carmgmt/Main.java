@@ -1,7 +1,9 @@
 package carmgmt;
 
+import javax.swing.*;
+
 public class Main {
 	public static void main(String[] args) {
-		new Application();
+		SwingUtilities.invokeLater(Application::new);
 	}
 }
