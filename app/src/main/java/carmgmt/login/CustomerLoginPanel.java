@@ -1,5 +1,7 @@
 package carmgmt.login;
 
+import carmgmt.backend.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,14 +9,15 @@ import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class UserLoginPanel extends JPanel {
+public class CustomerLoginPanel extends JPanel {
+	private JFrame parentFrame = null;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
-	private JLabel usernameLabel, passwordLabel, heading;
+	private JLabel usernameLabel, passwordLabel, heading, loginFailWarning;
 	private JButton showPasswordBtn;
 	private JButton loginBtn;
 	
-	public UserLoginPanel(int width, int height) {
+	public CustomerLoginPanel(int width, int height) {
 		setBounds(0, 0, width, height);
 		setBackground(new Color(50, 50, 50, 255));
 		
@@ -26,6 +29,7 @@ public class UserLoginPanel extends JPanel {
 		heading = new JLabel("User Login");
 		usernameLabel = new JLabel("Username:");
 		passwordLabel = new JLabel("Password:");
+		loginFailWarning = new JLabel("username or password incorrect");
 		usernameField = new JTextField();
 		passwordField = new JPasswordField();
 		showPasswordBtn = new JButton("Show");
@@ -34,6 +38,7 @@ public class UserLoginPanel extends JPanel {
 		usernameLabel.setForeground(Color.WHITE);
 		passwordLabel.setForeground(Color.WHITE);
 		heading.setForeground(Color.WHITE);
+		loginFailWarning.setForeground(Color.RED);
 		
 		// Add Heading
 		gbc.gridx = 1;
@@ -74,10 +79,16 @@ public class UserLoginPanel extends JPanel {
 		gbc.gridy = 4;
 		add(loginBtn, gbc);
 		
+		// Adding LoginFailWarning
+		gbc.gridx = 1;
+		gbc.gridy = 5;
+		add(loginFailWarning, gbc);
+		loginFailWarning.setVisible(false);
+		
 		showPasswordBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (passwordField.getEchoChar() == 0) {
+				if(passwordField.getEchoChar() == 0) {
 					passwordField.setEchoChar('\u2022'); // Hide password
 					showPasswordBtn.setText("Show");
 				} else {
@@ -91,18 +102,31 @@ public class UserLoginPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TODO: implement this
-				System.out.println("call login validation function(to be implemented)");
+				String username = usernameField.getText();
+				String password = new String(passwordField.getPassword());
+				
+				ConnectionManager.validateLogin(username, password, UserType.Customer);
+				
+				if(ConnectionManager.getCurrentLoginId() == -1) {
+					loginFailWarning.setVisible(true);
+				} else {
+					loginFailWarning.setVisible(false);
+					detachFromParentFrame();
+					System.out.println("Connect as customer with id: " + ConnectionManager.getCurrentLoginId());
+				}
 			}
 		});
 	}
 	
 	public void attachTo(JFrame frame) {
-		frame.add(this);
+		parentFrame = frame;
+		parentFrame.add(this);
 		setVisible(true);
 	}
 	
-	public void detachFrom(JFrame frame) {
+	public void detachFromParentFrame() {
 		setVisible(false);
-		frame.remove(this);
+		parentFrame.remove(this);
+		parentFrame = null;
 	}
 }
