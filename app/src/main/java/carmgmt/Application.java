@@ -1,14 +1,13 @@
 package carmgmt;
 
-import carmgmt.login.CustomerLoginPanel;
-
 public class Application {
 	WindowFrame windowFrame;
+	public static final int WinWidth = 640, WinHeight = 480;
 	
 	public Application() {
-		windowFrame = new WindowFrame(640, 480);
-		CustomerLoginPanel customerLoginPanel = new CustomerLoginPanel(640, 480);
+		windowFrame = new WindowFrame(WinWidth, WinHeight);
+		HomePanel homePanel = new HomePanel(WinWidth, WinHeight);
 		
-		customerLoginPanel.attachTo(windowFrame);
+		homePanel.attachTo(windowFrame);
 	}
 }

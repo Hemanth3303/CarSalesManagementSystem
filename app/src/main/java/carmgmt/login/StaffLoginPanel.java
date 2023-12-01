@@ -1,7 +1,5 @@
 package carmgmt.login;
 
-import carmgmt.Application;
-import carmgmt.HomePanel;
 import carmgmt.backend.*;
 
 import javax.swing.*;
@@ -11,15 +9,15 @@ import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class CustomerLoginPanel extends JPanel {
+public class StaffLoginPanel extends JPanel {
 	private JFrame parentFrame = null;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JLabel usernameLabel, passwordLabel, heading, loginFailWarning;
 	private JButton showPasswordBtn;
-	private JButton loginBtn, backBtn;
+	private JButton loginBtn;
 	
-	public CustomerLoginPanel(int width, int height) {
+	public StaffLoginPanel(int width, int height) {
 		setBounds(0, 0, width, height);
 		setBackground(new Color(50, 50, 50, 255));
 		
@@ -28,7 +26,7 @@ public class CustomerLoginPanel extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
-		heading = new JLabel("User Login");
+		heading = new JLabel("Staff Login");
 		usernameLabel = new JLabel("Username:");
 		passwordLabel = new JLabel("Password:");
 		loginFailWarning = new JLabel("username or password incorrect");
@@ -36,7 +34,6 @@ public class CustomerLoginPanel extends JPanel {
 		passwordField = new JPasswordField();
 		showPasswordBtn = new JButton("Show");
 		loginBtn = new JButton("Login");
-		backBtn = new JButton("Go Back");
 		
 		usernameLabel.setForeground(Color.WHITE);
 		passwordLabel.setForeground(Color.WHITE);
@@ -82,11 +79,6 @@ public class CustomerLoginPanel extends JPanel {
 		gbc.gridy = 4;
 		add(loginBtn, gbc);
 		
-		// Adding Go Back Btn
-		gbc.gridx = 0;
-		gbc.gridy = 4;
-		add(backBtn, gbc);
-		
 		// Adding LoginFailWarning
 		gbc.gridx = 1;
 		gbc.gridy = 5;
@@ -113,23 +105,15 @@ public class CustomerLoginPanel extends JPanel {
 				String username = usernameField.getText();
 				String password = new String(passwordField.getPassword());
 				
-				ConnectionManager.validateLogin(username, password, UserType.Customer);
+				ConnectionManager.validateLogin(username, password, UserType.Staff);
 				
 				if(ConnectionManager.getCurrentLoginId() <= -1) {
 					loginFailWarning.setVisible(true);
 				} else {
 					loginFailWarning.setVisible(false);
 					detachFromParentFrame();
-					System.out.println("Connect as customer with id: " + ConnectionManager.getCurrentLoginId());
+					System.out.println("Connect as staff with id: " + ConnectionManager.getCurrentLoginId());
 				}
-			}
-		});
-		
-		backBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new HomePanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				detachFromParentFrame();
 			}
 		});
 	}
