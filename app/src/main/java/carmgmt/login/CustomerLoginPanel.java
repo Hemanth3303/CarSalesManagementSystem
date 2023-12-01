@@ -5,7 +5,6 @@ import carmgmt.backend.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class CustomerLoginPanel extends LoginPanel {
 	public CustomerLoginPanel(int width, int height) {
 		super(width, height);

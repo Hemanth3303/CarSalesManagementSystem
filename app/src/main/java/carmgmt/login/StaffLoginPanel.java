@@ -2,16 +2,13 @@ package carmgmt.login;
 
 import carmgmt.backend.*;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.border.EmptyBorder;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class StaffLoginPanel extends LoginPanel {
 	public StaffLoginPanel(int width, int height) {
 		super(width, height);
+		
 		loginBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
