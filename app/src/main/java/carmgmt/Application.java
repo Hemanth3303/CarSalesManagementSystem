@@ -1,14 +1,17 @@
 package carmgmt;
 
-import carmgmt.login.CustomerLoginPanel;
+import carmgmt.backend.ConnectionManager;
 
 public class Application {
 	WindowFrame windowFrame;
+	public static final int WinWidth = 640, WinHeight = 480;
 	
 	public Application() {
-		windowFrame = new WindowFrame(640, 480);
-		CustomerLoginPanel customerLoginPanel = new CustomerLoginPanel(640, 480);
+		ConnectionManager.init("jdbc:mysql://localhost:3306/carmgmtdb", "root", "admin");
 		
-		customerLoginPanel.attachTo(windowFrame);
+		windowFrame = new WindowFrame(WinWidth, WinHeight);
+		HomePanel homePanel = new HomePanel(WinWidth, WinHeight);
+		
+		homePanel.attachTo(windowFrame);
 	}
 }
