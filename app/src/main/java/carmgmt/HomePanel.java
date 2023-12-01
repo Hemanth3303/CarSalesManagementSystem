@@ -74,7 +74,7 @@ public class HomePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//TODO
 				//new CustomerRegistrationPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				detachFromParentFrame();
+				//detachFromParentFrame();
 			}
 		});
 		
