@@ -70,7 +70,7 @@ public class CustomerLoginPanel extends JPanel {
 		// Adding Show Password Button
 		gbc.gridx = 2;
 		gbc.gridy = 3;
-		showPasswordBtn.setPreferredSize(new Dimension(40, 25)); // Adjust the size as needed
+		showPasswordBtn.setPreferredSize(new Dimension(40, 25));
 		showPasswordBtn.setBorder(new EmptyBorder(0, 0, 0, 0)); // Remove button border
 		add(showPasswordBtn, gbc);
 		
