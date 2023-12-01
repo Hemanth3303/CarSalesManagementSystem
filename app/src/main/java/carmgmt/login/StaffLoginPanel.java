@@ -9,10 +9,11 @@ public class StaffLoginPanel extends LoginPanel {
 	public StaffLoginPanel(int width, int height) {
 		super(width, height);
 		
+		heading.setText("Staff Login");
+		
 		loginBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO: implement this
 				String username = usernameField.getText();
 				String password = new String(passwordField.getPassword());
 				

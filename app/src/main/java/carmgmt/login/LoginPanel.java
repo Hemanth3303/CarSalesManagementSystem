@@ -29,7 +29,7 @@ public abstract class LoginPanel extends JPanel {
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
-		heading = new JLabel("User Login");
+		heading = new JLabel("Login");
 		usernameLabel = new JLabel("Username:");
 		passwordLabel = new JLabel("Password:");
 		loginFailWarning = new JLabel("username or password incorrect");

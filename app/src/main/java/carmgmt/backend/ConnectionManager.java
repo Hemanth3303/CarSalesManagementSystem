@@ -5,9 +5,15 @@ import java.sql.*;
 public class ConnectionManager {
 	private static int currentLoginId = -1;
 	private static UserType currentUserType = null;
-	private static final String dbURL = "jdbc:mysql://localhost:3306/carmgmtdb";
-	private static final String dbUsername = "root";
-	private static final String dbPassword = "admin";
+	private static String dbURL;
+	private static String dbUsername;
+	private static String dbPassword;
+	
+	public static void init(String p_dbURL, String p_dbUsername, String p_dbPassword) {
+		dbURL = p_dbURL;
+		dbUsername = p_dbUsername;
+		dbPassword = p_dbPassword;
+	}
 	
 	public static void validateLogin(String username, String password, UserType userType) {
 		if(userType == UserType.Customer) {

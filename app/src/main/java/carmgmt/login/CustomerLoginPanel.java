@@ -9,6 +9,8 @@ public class CustomerLoginPanel extends LoginPanel {
 	public CustomerLoginPanel(int width, int height) {
 		super(width, height);
 		
+		heading.setText("User Login");
+		
 		loginBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
