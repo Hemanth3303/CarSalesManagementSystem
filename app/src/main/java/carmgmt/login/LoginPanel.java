@@ -2,7 +2,6 @@ package carmgmt.login;
 
 import carmgmt.Application;
 import carmgmt.HomePanel;
-import carmgmt.backend.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -98,7 +97,7 @@ public abstract class LoginPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(passwordField.getEchoChar() == 0) {
-					passwordField.setEchoChar('\u2022'); // Hide password
+					passwordField.setEchoChar('\u2022'); // Hide password with this character •
 					showPasswordBtn.setText("Show");
 				} else {
 					passwordField.setEchoChar((char) 0); // Show password
