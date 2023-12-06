@@ -2,7 +2,7 @@ package carmgmt.login;
 
 import carmgmt.Application;
 import carmgmt.HomePanel;
-import carmgmt.backend.ConnectionManager;
+import carmgmt.backend.Server;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -227,11 +227,11 @@ public class CustomerRegistrationPanel extends JPanel {
 					return;
 				}
 				
-				if(ConnectionManager.userNameExists(username)) {
+				if(Server.userNameExists(username)) {
 					registerFailWarning.setText("Username already exists");
 					registerFailWarning.setVisible(true);
 				} else {
-					ConnectionManager.registerCustomer(username, password, fname, lname, email, phone, address);
+					Server.registerCustomer(username, password, fname, lname, email, phone, address);
 					registerSuccess.setVisible(true);
 				}
 			}

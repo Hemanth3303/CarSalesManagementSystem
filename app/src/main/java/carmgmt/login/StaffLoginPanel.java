@@ -17,14 +17,14 @@ public class StaffLoginPanel extends LoginPanel {
 				String username = usernameField.getText();
 				String password = new String(passwordField.getPassword());
 				
-				ConnectionManager.validateLogin(username, password, UserType.Staff);
+				Server.validateLogin(username, password, UserType.Staff);
 				
-				if(ConnectionManager.getCurrentLoginId() <= 0) {
+				if(Server.getCurrentLoginId() <= 0) {
 					loginFailWarning.setVisible(true);
 				} else {
 					loginFailWarning.setVisible(false);
 					detachFromParentFrame();
-					System.out.println("Connect as staff with id: " + ConnectionManager.getCurrentLoginId());
+					System.out.println("Connect as staff with id: " + Server.getCurrentLoginId());
 				}
 			}
 		});

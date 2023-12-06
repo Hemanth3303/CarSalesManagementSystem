@@ -2,7 +2,7 @@ package carmgmt.backend;
 
 import java.sql.*;
 
-public class ConnectionManager {
+public class Server {
 	private static int currentLoginId = -1;
 	private static UserType currentUserType = null;
 	private static String dbURL;

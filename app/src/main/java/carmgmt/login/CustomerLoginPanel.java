@@ -18,14 +18,14 @@ public class CustomerLoginPanel extends LoginPanel {
 				String username = usernameField.getText();
 				String password = new String(passwordField.getPassword());
 				
-				ConnectionManager.validateLogin(username, password, UserType.Customer);
+				Server.validateLogin(username, password, UserType.Customer);
 				
-				if(ConnectionManager.getCurrentLoginId() <= 0) {
+				if(Server.getCurrentLoginId() <= 0) {
 					loginFailWarning.setVisible(true);
 				} else {
 					loginFailWarning.setVisible(false);
 					detachFromParentFrame();
-					System.out.println("Connect as customer with id: " + ConnectionManager.getCurrentLoginId());
+					System.out.println("Connect as customer with id: " + Server.getCurrentLoginId());
 				}
 			}
 		});
