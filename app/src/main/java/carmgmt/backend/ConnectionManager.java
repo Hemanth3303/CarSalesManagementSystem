@@ -28,14 +28,60 @@ public class ConnectionManager {
 		currentUserType = null;
 	}
 	
+	public static boolean userNameExists(String customerUserName) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"select * from customer where username=?"
+			);
+			preparedStatement.setString(1, customerUserName);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return true;
+			}
+			connection.close();
+		} catch(Exception e) {
+			System.out.println("Error: " + e.toString());
+		}
+		return false;
+	}
+	
+	public static void registerCustomer(String username, String password, String fname, String lname, String email, String phone, String address) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"insert into customer(username,password,fname,lname,email,phone,address) values(?,?,?,?,?,?,?)"
+			);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+			preparedStatement.setString(3, fname);
+			preparedStatement.setString(4, lname);
+			preparedStatement.setString(5, email);
+			preparedStatement.setString(6, phone);
+			preparedStatement.setString(7, address);
+			
+			preparedStatement.executeUpdate();
+			
+			connection.close();
+		} catch(Exception e) {
+			System.out.println("Error: " + e.toString());
+		}
+	}
+	
 	private static void validateCustomerLogin(String customerUserName, String password) {
 		currentUserType = UserType.Customer;
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from customer where username='" + customerUserName + "' and password='" + password + "'");
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"select * from customer where username=? and password=?"
+			);
+			preparedStatement.setString(1, customerUserName);
+			preparedStatement.setString(2, password);
+			ResultSet resultSet = preparedStatement.executeQuery();
 			if(resultSet.next()) {
 				currentLoginId = resultSet.getInt("id");
 			}
@@ -51,8 +97,12 @@ public class ConnectionManager {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from staff where username='" + staffUserName + "' and password='" + password + "'");
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"select * from staff where username=? and password=?"
+			);
+			preparedStatement.setString(1, staffUserName);
+			preparedStatement.setString(2, password);
+			ResultSet resultSet = preparedStatement.executeQuery();
 			if(resultSet.next()) {
 				currentLoginId = resultSet.getInt("id");
 			}

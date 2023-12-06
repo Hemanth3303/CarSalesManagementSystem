@@ -9,7 +9,7 @@ public class CustomerLoginPanel extends LoginPanel {
 	public CustomerLoginPanel(int width, int height) {
 		super(width, height);
 		
-		heading.setText("User Login");
+		heading.setText("Customer Login");
 		
 		loginBtn.addActionListener(new ActionListener() {
 			@Override
@@ -20,7 +20,7 @@ public class CustomerLoginPanel extends LoginPanel {
 				
 				ConnectionManager.validateLogin(username, password, UserType.Customer);
 				
-				if(ConnectionManager.getCurrentLoginId() <= -1) {
+				if(ConnectionManager.getCurrentLoginId() <= 0) {
 					loginFailWarning.setVisible(true);
 				} else {
 					loginFailWarning.setVisible(false);

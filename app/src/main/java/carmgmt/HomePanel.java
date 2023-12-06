@@ -1,15 +1,13 @@
 package carmgmt;
 
-import carmgmt.backend.*;
 import carmgmt.login.CustomerLoginPanel;
+import carmgmt.login.CustomerRegistrationPanel;
 import carmgmt.login.StaffLoginPanel;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class HomePanel extends JPanel {
@@ -72,9 +70,8 @@ public class HomePanel extends JPanel {
 		customerRegistrationBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO
-				//new CustomerRegistrationPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				//detachFromParentFrame();
+				new CustomerRegistrationPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+				detachFromParentFrame();
 			}
 		});
 		

@@ -17,8 +17,8 @@ Database name: carmgmtdb
 ### Tables
 
 * customer(id int primary key, username varchar, password varchar, fname varchar, lname varchar,
-  email varchar, phone varchar, address varchar, preferences varchar)
-* staff(id int primary key, username varchar, password varchar, fname varchar, lname varchar, role varchar, phone
+  email varchar, phone varchar, address varchar)
+* staff(id int primary key, username varchar, password varchar, fname varchar, lname varchar, phone
   varchar, email varchar)
 
 ## Third Party Resources

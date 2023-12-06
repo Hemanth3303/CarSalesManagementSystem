@@ -1,7 +1,6 @@
 package carmgmt.login;
 
 import carmgmt.backend.*;
-import carmgmt.staff.StaffDashboard;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +19,7 @@ public class StaffLoginPanel extends LoginPanel {
 				
 				ConnectionManager.validateLogin(username, password, UserType.Staff);
 				
-				if(ConnectionManager.getCurrentLoginId() <= -1) {
+				if(ConnectionManager.getCurrentLoginId() <= 0) {
 					loginFailWarning.setVisible(true);
 				} else {
 					loginFailWarning.setVisible(false);
