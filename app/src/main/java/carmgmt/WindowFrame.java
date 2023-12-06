@@ -1,8 +1,6 @@
 package carmgmt;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class WindowFrame extends JFrame {
 	public WindowFrame(int width, int height) {

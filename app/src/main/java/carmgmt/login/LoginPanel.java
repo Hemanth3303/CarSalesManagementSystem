@@ -5,8 +5,6 @@ import carmgmt.HomePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -93,25 +91,19 @@ public abstract class LoginPanel extends JPanel {
 		add(loginFailWarning, gbc);
 		loginFailWarning.setVisible(false);
 		
-		showPasswordBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(passwordField.getEchoChar() == 0) {
-					passwordField.setEchoChar('\u2022'); // Hide password with this character •
-					showPasswordBtn.setText("Show");
-				} else {
-					passwordField.setEchoChar((char) 0); // Show password
-					showPasswordBtn.setText("Hide");
-				}
+		showPasswordBtn.addActionListener(e -> {
+			if(passwordField.getEchoChar() == 0) {
+				passwordField.setEchoChar('\u2022'); // Hide password with this character •
+				showPasswordBtn.setText("Show");
+			} else {
+				passwordField.setEchoChar((char) 0); // Show password
+				showPasswordBtn.setText("Hide");
 			}
 		});
 		
-		backBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new HomePanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				detachFromParentFrame();
-			}
+		backBtn.addActionListener(e -> {
+			new HomePanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			detachFromParentFrame();
 		});
 	}
 	

@@ -3,7 +3,7 @@ package carmgmt.backend;
 import java.sql.*;
 
 public class Server {
-	private static int currentLoginId = -1;
+	private static int currentLoginId = 0;
 	private static UserType currentUserType = null;
 	private static String dbURL;
 	private static String dbUsername;
@@ -42,7 +42,7 @@ public class Server {
 			}
 			connection.close();
 		} catch(Exception e) {
-			System.out.println("Error: " + e.toString());
+			System.out.println("Error: " + e);
 		}
 		return false;
 	}
@@ -66,7 +66,7 @@ public class Server {
 			
 			connection.close();
 		} catch(Exception e) {
-			System.out.println("Error: " + e.toString());
+			System.out.println("Error: " + e);
 		}
 	}
 	
@@ -87,7 +87,7 @@ public class Server {
 			}
 			connection.close();
 		} catch(Exception e) {
-			System.out.println("Error: " + e.toString());
+			System.out.println("Error: " + e);
 		}
 	}
 	
@@ -108,7 +108,7 @@ public class Server {
 			}
 			connection.close();
 		} catch(Exception e) {
-			System.out.println("Error: " + e.toString());
+			System.out.println("Error: " + e);
 		}
 	}
 	

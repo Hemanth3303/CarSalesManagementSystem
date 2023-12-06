@@ -1,6 +1,7 @@
 package carmgmt;
 
 import carmgmt.backend.Server;
+import carmgmt.car.ViewCarsPanel;
 
 public class Application {
 	WindowFrame windowFrame;
@@ -13,5 +14,9 @@ public class Application {
 		HomePanel homePanel = new HomePanel(WinWidth, WinHeight);
 		
 		homePanel.attachTo(windowFrame);
+
+//		//TODO: remove this
+//		homePanel.detachFromParentFrame();
+//		new ViewCarsPanel(WinWidth, WinHeight).attachTo(windowFrame);
 	}
 }

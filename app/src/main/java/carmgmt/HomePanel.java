@@ -6,8 +6,6 @@ import carmgmt.login.StaffLoginPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class HomePanel extends JPanel {
@@ -59,28 +57,19 @@ public class HomePanel extends JPanel {
 		staffLoginBtn.setPreferredSize(new Dimension(150, 30));
 		add(staffLoginBtn, gbc);
 		
-		customerLoginBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new CustomerLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				detachFromParentFrame();
-			}
+		customerLoginBtn.addActionListener(e -> {
+			new CustomerLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			detachFromParentFrame();
 		});
 		
-		customerRegistrationBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new CustomerRegistrationPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				detachFromParentFrame();
-			}
+		customerRegistrationBtn.addActionListener(e -> {
+			new CustomerRegistrationPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			detachFromParentFrame();
 		});
 		
-		staffLoginBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new StaffLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				detachFromParentFrame();
-			}
+		staffLoginBtn.addActionListener(e -> {
+			new StaffLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			detachFromParentFrame();
 		});
 	}
 	

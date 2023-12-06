@@ -7,8 +7,6 @@ import carmgmt.backend.Server;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class CustomerRegistrationPanel extends JPanel {
 	private JLabel usernameLabel;
@@ -185,55 +183,46 @@ public class CustomerRegistrationPanel extends JPanel {
 		add(registerSuccess, gbc);
 		registerSuccess.setVisible(false);
 		
-		showPasswordBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(passwordField.getEchoChar() == 0) {
-					passwordField.setEchoChar('\u2022'); // Hide password with this character •
-					showPasswordBtn.setText("Show");
-				} else {
-					passwordField.setEchoChar((char) 0); // Show password
-					showPasswordBtn.setText("Hide");
-				}
+		showPasswordBtn.addActionListener(e -> {
+			if(passwordField.getEchoChar() == 0) {
+				passwordField.setEchoChar('\u2022'); // Hide password with this character •
+				showPasswordBtn.setText("Show");
+			} else {
+				passwordField.setEchoChar((char) 0); // Show password
+				showPasswordBtn.setText("Hide");
 			}
 		});
 		
-		backBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new HomePanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-				detachFromParentFrame();
-			}
+		backBtn.addActionListener(e -> {
+			new HomePanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			detachFromParentFrame();
 		});
 		
-		registerBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				registerSuccess.setVisible(false);
-				registerFailWarning.setVisible(false);
-				
-				String username = usernameField.getText();
-				String password = new String(passwordField.getPassword());
-				String fname = fnameField.getText();
-				String lname = lnameField.getText();
-				String email = emailField.getText();
-				String phone = phoneField.getText();
-				String address = addressField.getText();
-				
-				if(username.isEmpty() || password.isEmpty() || fname.isEmpty() || lname.isEmpty()
-						|| email.isEmpty() || phone.isEmpty() || address.isEmpty()) {
-					registerFailWarning.setText("Empty fields not allowed");
-					registerFailWarning.setVisible(true);
-					return;
-				}
-				
-				if(Server.userNameExists(username)) {
-					registerFailWarning.setText("Username already exists");
-					registerFailWarning.setVisible(true);
-				} else {
-					Server.registerCustomer(username, password, fname, lname, email, phone, address);
-					registerSuccess.setVisible(true);
-				}
+		registerBtn.addActionListener(e -> {
+			registerSuccess.setVisible(false);
+			registerFailWarning.setVisible(false);
+			
+			String username = usernameField.getText();
+			String password = new String(passwordField.getPassword());
+			String fname = fnameField.getText();
+			String lname = lnameField.getText();
+			String email = emailField.getText();
+			String phone = phoneField.getText();
+			String address = addressField.getText();
+			
+			if(username.isEmpty() || password.isEmpty() || fname.isEmpty() || lname.isEmpty()
+					|| email.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+				registerFailWarning.setText("Empty fields not allowed");
+				registerFailWarning.setVisible(true);
+				return;
+			}
+			
+			if(Server.userNameExists(username)) {
+				registerFailWarning.setText("Username already exists");
+				registerFailWarning.setVisible(true);
+			} else {
+				Server.registerCustomer(username, password, fname, lname, email, phone, address);
+				registerSuccess.setVisible(true);
 			}
 		});
 	}
