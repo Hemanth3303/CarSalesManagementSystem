@@ -8,12 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class HomePanel extends JPanel {
+public class HomePanel extends CPanel {
 	private JButton customerLoginBtn;
 	private JButton customerRegistrationBtn;
 	private JButton staffLoginBtn;
 	private JLabel heading;
-	private JFrame parentFrame;
 	
 	public HomePanel(int width, int height) {
 		setBounds(0, 0, width, height);
@@ -71,17 +70,5 @@ public class HomePanel extends JPanel {
 			new StaffLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 			detachFromParentFrame();
 		});
-	}
-	
-	public void attachTo(JFrame frame) {
-		parentFrame = frame;
-		parentFrame.add(this);
-		setVisible(true);
-	}
-	
-	public void detachFromParentFrame() {
-		setVisible(false);
-		parentFrame.remove(this);
-		parentFrame = null;
 	}
 }

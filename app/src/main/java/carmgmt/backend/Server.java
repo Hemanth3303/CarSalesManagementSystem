@@ -70,6 +70,45 @@ public class Server {
 		}
 	}
 	
+	public static String[][] getCarsToStaff() {
+		String[][] outStringTable = new String[15][6];
+		int rowIndex = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"select * from cars"
+			);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				outStringTable[rowIndex][0] = String.valueOf(resultSet.getInt("id"));
+				outStringTable[rowIndex][1] = resultSet.getString("model");
+				outStringTable[rowIndex][2] = resultSet.getString("year");
+				outStringTable[rowIndex][3] = resultSet.getBoolean("availability") ? "available" : "sold";
+				outStringTable[rowIndex][4] = resultSet.getString("description");
+				outStringTable[rowIndex][5] = "Delete";
+				rowIndex++;
+			}
+		} catch(Exception e) {
+			System.out.println("Error: " + e);
+		}
+		return outStringTable;
+	}
+	
+	public static void deleteCar(int id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"delete from cars where id=?"
+			);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+		} catch(Exception e) {
+			System.out.println("Error: " + e);
+		}
+	}
+	
 	private static void validateCustomerLogin(String customerUserName, String password) {
 		currentUserType = UserType.Customer;
 		

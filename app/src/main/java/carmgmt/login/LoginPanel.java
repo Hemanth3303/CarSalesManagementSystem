@@ -1,6 +1,7 @@
 package carmgmt.login;
 
 import carmgmt.Application;
+import carmgmt.CPanel;
 import carmgmt.HomePanel;
 
 import javax.swing.*;
@@ -8,8 +9,7 @@ import java.awt.*;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("FieldCanBeLocal")
-public abstract class LoginPanel extends JPanel {
-	protected JFrame parentFrame = null;
+public abstract class LoginPanel extends CPanel {
 	protected JTextField usernameField;
 	protected JPasswordField passwordField;
 	protected JLabel usernameLabel, passwordLabel, heading, loginFailWarning;
@@ -105,17 +105,5 @@ public abstract class LoginPanel extends JPanel {
 			new HomePanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 			detachFromParentFrame();
 		});
-	}
-	
-	public void attachTo(JFrame frame) {
-		parentFrame = frame;
-		parentFrame.add(this);
-		setVisible(true);
-	}
-	
-	public void detachFromParentFrame() {
-		setVisible(false);
-		parentFrame.remove(this);
-		parentFrame = null;
 	}
 }

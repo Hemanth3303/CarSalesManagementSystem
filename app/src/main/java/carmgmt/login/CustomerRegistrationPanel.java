@@ -1,6 +1,7 @@
 package carmgmt.login;
 
 import carmgmt.Application;
+import carmgmt.CPanel;
 import carmgmt.HomePanel;
 import carmgmt.backend.Server;
 
@@ -8,7 +9,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class CustomerRegistrationPanel extends JPanel {
+public class CustomerRegistrationPanel extends CPanel {
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JLabel fnameLabel;
@@ -16,7 +17,6 @@ public class CustomerRegistrationPanel extends JPanel {
 	private JLabel emailLabel;
 	private JLabel phoneLabel;
 	private JLabel addressLabel;
-	private JFrame parentFrame = null;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JTextField fnameField;
@@ -225,17 +225,5 @@ public class CustomerRegistrationPanel extends JPanel {
 				registerSuccess.setVisible(true);
 			}
 		});
-	}
-	
-	public void attachTo(JFrame frame) {
-		parentFrame = frame;
-		parentFrame.add(this);
-		setVisible(true);
-	}
-	
-	public void detachFromParentFrame() {
-		setVisible(false);
-		parentFrame.remove(this);
-		parentFrame = null;
 	}
 }
