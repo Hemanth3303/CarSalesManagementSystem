@@ -2,7 +2,7 @@ package carmgmt.login;
 
 import carmgmt.Application;
 import carmgmt.backend.*;
-import carmgmt.car.ManageCarsPanel;
+import carmgmt.car.ViewCarsPanel;
 
 public class StaffLoginPanel extends LoginPanel {
 	public StaffLoginPanel(int width, int height) {
@@ -20,7 +20,7 @@ public class StaffLoginPanel extends LoginPanel {
 				loginFailWarning.setVisible(true);
 			} else {
 				loginFailWarning.setVisible(false);
-				new ManageCarsPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+				new ViewCarsPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 				detachFromParentFrame();
 				System.out.println("Connect as staff with id: " + Server.getCurrentLoginId());
 			}

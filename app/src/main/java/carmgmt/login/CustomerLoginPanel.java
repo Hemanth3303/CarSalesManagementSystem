@@ -1,6 +1,8 @@
 package carmgmt.login;
 
+import carmgmt.Application;
 import carmgmt.backend.*;
+import carmgmt.car.ViewCarsPanel;
 
 public class CustomerLoginPanel extends LoginPanel {
 	public CustomerLoginPanel(int width, int height) {
@@ -19,6 +21,7 @@ public class CustomerLoginPanel extends LoginPanel {
 				loginFailWarning.setVisible(true);
 			} else {
 				loginFailWarning.setVisible(false);
+				new ViewCarsPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 				detachFromParentFrame();
 				System.out.println("Connect as customer with id: " + Server.getCurrentLoginId());
 			}

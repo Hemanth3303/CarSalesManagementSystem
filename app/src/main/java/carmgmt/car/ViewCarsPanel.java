@@ -11,16 +11,15 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ManageCarsPanel extends CPanel {
+public class ViewCarsPanel extends CPanel {
 	private JTable carTable;
 	private JLabel heading;
 	private GridBagConstraints gbc;
-	private JButton addCarBtn;
 	private JButton logoutBtn;
 	private String[][] cars;
 	private String[] tableHeadings;
 	
-	public ManageCarsPanel(int width, int height) {
+	public ViewCarsPanel(int width, int height) {
 		setBounds(0, 0, width, height);
 		setBackground(new Color(50, 50, 50, 255));
 		
@@ -30,30 +29,29 @@ public class ManageCarsPanel extends CPanel {
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
 		tableHeadings = new String[]{"ID", "Model", "Year", "Availability", "Price", "Action"};
-		cars = Server.getCarsToStaff();
+		cars = Server.getCarsToUser();
 		
 		heading = new JLabel("Manage Cars");
 		DefaultTableModel model = new DefaultTableModel(cars, tableHeadings);
 		carTable = new JTable(model);
-		addCarBtn = new JButton("Add Car");
 		logoutBtn = new JButton("Logout");
 		
 		heading.setForeground(Color.WHITE);
 		
-		Action delete = new AbstractAction() {
+		Action buy = new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
 				String strId = (String) table.getModel().getValueAt(0, 0);
 				if(strId != null) {
 					int id = Integer.parseInt(strId);
-					Server.deleteCar(id);
-					((DefaultTableModel) table.getModel()).removeRow(modelRow);
+//					new BuyCarPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+//					detachFromParentFrame();
 				}
 			}
 		};
 		
-		new ButtonColumn(carTable, delete, 5);
+		new ButtonColumn(carTable, buy, 5);
 		
 		// Add Heading
 		gbc.gridx = 0;
@@ -71,11 +69,6 @@ public class ManageCarsPanel extends CPanel {
 		carTable.setDefaultEditor(Object.class, null);
 		add(carTable, gbc);
 		
-		// Add addCar btn
-		gbc.gridx = 3;
-		gbc.gridy = 1;
-		add(addCarBtn, gbc);
-		
 		// Add logout btn
 		gbc.gridx = 3;
 		gbc.gridy = 2;
@@ -84,11 +77,6 @@ public class ManageCarsPanel extends CPanel {
 		logoutBtn.addActionListener(e -> {
 			Server.disconnect();
 			new StaffLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-			detachFromParentFrame();
-		});
-		
-		addCarBtn.addActionListener(e -> {
-			new AddCarPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 			detachFromParentFrame();
 		});
 	}

@@ -85,7 +85,7 @@ public class Server {
 				outStringTable[rowIndex][1] = resultSet.getString("model");
 				outStringTable[rowIndex][2] = resultSet.getString("year");
 				outStringTable[rowIndex][3] = resultSet.getBoolean("availability") ? "available" : "sold";
-				outStringTable[rowIndex][4] = resultSet.getString("description");
+				outStringTable[rowIndex][4] = resultSet.getString("cost");
 				outStringTable[rowIndex][5] = "Delete";
 				rowIndex++;
 			}
@@ -93,6 +93,53 @@ public class Server {
 			System.out.println("Error: " + e);
 		}
 		return outStringTable;
+	}
+	
+	public static String[][] getCarsToUser() {
+		String[][] outStringTable = new String[15][6];
+		int rowIndex = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"select * from cars"
+			);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				outStringTable[rowIndex][0] = String.valueOf(resultSet.getInt("id"));
+				outStringTable[rowIndex][1] = resultSet.getString("model");
+				outStringTable[rowIndex][2] = resultSet.getString("year");
+				outStringTable[rowIndex][3] = resultSet.getBoolean("availability") ? "available" : "sold";
+				outStringTable[rowIndex][4] = resultSet.getString("cost");
+				outStringTable[rowIndex][5] = "Buy";
+				rowIndex++;
+			}
+		} catch(Exception e) {
+			System.out.println("Error: " + e);
+		}
+		return outStringTable;
+	}
+	
+	public static void addCar(String model, String year, String cost) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"insert into cars(model, year, availability, cost) values(?, ?, ?, ?)"
+			);
+			preparedStatement.setString(1, model);
+			preparedStatement.setString(2, year);
+			preparedStatement.setBoolean(3, true);
+			preparedStatement.setString(4, cost);
+			
+			preparedStatement.executeUpdate();
+		} catch(Exception e) {
+			System.out.println("Error: " + e);
+		}
+	}
+	
+	public static void buyCar(int id) {
+	
 	}
 	
 	public static void deleteCar(int id) {

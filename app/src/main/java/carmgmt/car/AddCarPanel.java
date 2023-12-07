@@ -3,7 +3,6 @@ package carmgmt.car;
 import carmgmt.Application;
 import carmgmt.CPanel;
 import carmgmt.backend.Server;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +11,10 @@ public class AddCarPanel extends CPanel {
 	private GridBagConstraints gbc;
 	private JLabel modelLabel;
 	private JLabel yearLabel;
-	private JLabel descLabel;
+	private JLabel costLabel;
 	private JTextField modelField;
 	private JTextField yearField;
-	private JTextField descField;
+	private JTextField costField;
 	private JLabel heading;
 	private JLabel addCarSuccessLabel;
 	private JButton addCarBtn, backBtn;
@@ -31,17 +30,17 @@ public class AddCarPanel extends CPanel {
 		heading = new JLabel("Add Car");
 		modelLabel = new JLabel("Model:");
 		yearLabel = new JLabel("Year:");
-		descLabel = new JLabel("Description: ");
+		costLabel = new JLabel("Cost: ");
 		addCarSuccessLabel = new JLabel("Successfully Added Car");
 		modelField = new JTextField();
 		yearField = new JTextField();
-		descField = new JTextField();
+		costField = new JTextField();
 		addCarBtn = new JButton("Add Car");
 		backBtn = new JButton("Go Back");
 		
 		modelLabel.setForeground(Color.WHITE);
 		yearLabel.setForeground(Color.WHITE);
-		descLabel.setForeground(Color.WHITE);
+		costLabel.setForeground(Color.WHITE);
 		heading.setForeground(Color.WHITE);
 		addCarSuccessLabel.setForeground(Color.GREEN);
 		
@@ -69,10 +68,10 @@ public class AddCarPanel extends CPanel {
 		// Add desc
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		add(descLabel, gbc);
+		add(costLabel, gbc);
 		gbc.gridx = 1;
-		descField.setPreferredSize(new Dimension(150, 25));
-		add(descField, gbc);
+		costField.setPreferredSize(new Dimension(150, 25));
+		add(costField, gbc);
 		
 		// Add AddBtn
 		gbc.gridx = 1;
@@ -91,11 +90,18 @@ public class AddCarPanel extends CPanel {
 		addCarSuccessLabel.setVisible(false);
 		
 		addCarBtn.addActionListener(e -> {
-			//Server.addCar();
+			addCarSuccessLabel.setVisible(false);
+			
+			String model = modelField.getText();
+			String year = yearField.getText();
+			String cost = costField.getText();
+			
+			Server.addCar(model, year, cost);
+			addCarSuccessLabel.setVisible(true);
 		});
 		
 		backBtn.addActionListener(e -> {
-			new ManageCarsPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			new ViewCarsPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 			detachFromParentFrame();
 		});
 	}
