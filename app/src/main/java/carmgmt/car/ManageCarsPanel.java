@@ -38,7 +38,7 @@ public class ManageCarsPanel extends CPanel {
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
-				String strId = (String) table.getModel().getValueAt(0, 0);
+				String strId = (String) table.getModel().getValueAt(modelRow, 0);
 				if(strId != null) {
 					int id = Integer.parseInt(strId);
 					Server.deleteCar(id);

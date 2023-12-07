@@ -1,6 +1,9 @@
 package carmgmt.backend;
 
+import carmgmt.car.CarProps;
+
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class Server {
 	private static int currentLoginId = 0;
@@ -138,8 +141,49 @@ public class Server {
 		}
 	}
 	
-	public static void buyCar(int id) {
+	public static CarProps getCarProps(int id) {
+		CarProps props = new CarProps();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"select * from cars where id=?"
+			);
+			preparedStatement.setInt(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				props.model = resultSet.getString("model");
+				props.year = resultSet.getString("year");
+				props.cost = resultSet.getString("cost");
+			}
+		} catch(Exception e) {
+			System.out.println("Error: " + e);
+		}
+		return props;
+	}
 	
+	public static void buyCar(int id, String cost) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"update cars set availability=? where id=?"
+			);
+			preparedStatement.setBoolean(1, false);
+			preparedStatement.setInt(2, id);
+			preparedStatement.executeUpdate();
+			preparedStatement = connection.prepareStatement(
+					"insert into sales(customer_id, car_id, amount, payment_time) values (?, ?, ?, ?)"
+			);
+			String timeStamp = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss").format(new java.util.Date());
+			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(2, currentLoginId);
+			preparedStatement.setString(3, cost);
+			preparedStatement.setString(4, timeStamp);
+			preparedStatement.executeUpdate();
+		} catch(Exception e) {
+			System.out.println("Error: " + e);
+		}
 	}
 	
 	public static void deleteCar(int id) {

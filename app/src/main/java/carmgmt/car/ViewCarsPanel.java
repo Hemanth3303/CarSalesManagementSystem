@@ -2,6 +2,7 @@ package carmgmt.car;
 
 import carmgmt.Application;
 import carmgmt.CPanel;
+import carmgmt.login.CustomerLoginPanel;
 import carmgmt.thirdparty.ButtonColumn;
 import carmgmt.backend.Server;
 import carmgmt.login.StaffLoginPanel;
@@ -37,8 +38,9 @@ public class ViewCarsPanel extends CPanel {
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
-				String strId = (String) table.getModel().getValueAt(0, 0);
-				if(strId != null) {
+				String strId = (String) table.getModel().getValueAt(modelRow, 0);
+				String availabilty = (String) table.getModel().getValueAt(modelRow, 3);
+				if(strId != null && availabilty.equals("available")) {
 					int id = Integer.parseInt(strId);
 					new BuyCarPanel(Application.WinWidth, Application.WinHeight, id).attachTo(parentFrame);
 					detachFromParentFrame();
@@ -71,7 +73,7 @@ public class ViewCarsPanel extends CPanel {
 		
 		logoutBtn.addActionListener(e -> {
 			Server.disconnect();
-			new StaffLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			new CustomerLoginPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 			detachFromParentFrame();
 		});
 	}
