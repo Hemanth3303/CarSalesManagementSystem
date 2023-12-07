@@ -14,19 +14,13 @@ import java.awt.event.ActionEvent;
 public class ManageCarsPanel extends CPanel {
 	private JTable carTable;
 	private JLabel heading;
-	private GridBagConstraints gbc;
 	private JButton addCarBtn;
 	private JButton logoutBtn;
 	private String[][] cars;
 	private String[] tableHeadings;
 	
 	public ManageCarsPanel(int width, int height) {
-		setBounds(0, 0, width, height);
-		setBackground(new Color(50, 50, 50, 255));
-		
-		setLayout(new GridBagLayout());
-		
-		gbc = new GridBagConstraints();
+		super(width, height);
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
 		tableHeadings = new String[]{"ID", "Model", "Year", "Availability", "Price", "Action"};

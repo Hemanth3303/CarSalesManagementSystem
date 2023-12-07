@@ -15,15 +15,9 @@ public abstract class LoginPanel extends CPanel {
 	protected JLabel usernameLabel, passwordLabel, heading, loginFailWarning;
 	protected JButton showPasswordBtn;
 	protected JButton loginBtn, backBtn;
-	protected GridBagConstraints gbc;
 	
 	public LoginPanel(int width, int height) {
-		setBounds(0, 0, width, height);
-		setBackground(new Color(50, 50, 50, 255));
-		
-		setLayout(new GridBagLayout());
-		
-		gbc = new GridBagConstraints();
+		super(width, height);
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
 		heading = new JLabel("Login");

@@ -9,18 +9,13 @@ import java.awt.*;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class HomePanel extends CPanel {
-	private JButton customerLoginBtn;
-	private JButton customerRegistrationBtn;
-	private JButton staffLoginBtn;
-	private JLabel heading;
+	private final JButton customerLoginBtn;
+	private final JButton customerRegistrationBtn;
+	private final JButton staffLoginBtn;
+	private final JLabel heading;
 	
 	public HomePanel(int width, int height) {
-		setBounds(0, 0, width, height);
-		setBackground(new Color(50, 50, 50, 255));
-		
-		setLayout(new GridBagLayout());
-		
-		GridBagConstraints gbc = new GridBagConstraints();
+		super(width, height);
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
 		heading = new JLabel("Car Sales Management System");

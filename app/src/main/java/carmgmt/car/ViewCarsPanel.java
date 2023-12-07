@@ -14,24 +14,19 @@ import java.awt.event.ActionEvent;
 public class ViewCarsPanel extends CPanel {
 	private JTable carTable;
 	private JLabel heading;
-	private GridBagConstraints gbc;
 	private JButton logoutBtn;
 	private String[][] cars;
 	private String[] tableHeadings;
 	
 	public ViewCarsPanel(int width, int height) {
-		setBounds(0, 0, width, height);
-		setBackground(new Color(50, 50, 50, 255));
+		super(width, height);
 		
-		setLayout(new GridBagLayout());
-		
-		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
 		tableHeadings = new String[]{"ID", "Model", "Year", "Availability", "Price", "Action"};
 		cars = Server.getCarsToUser();
 		
-		heading = new JLabel("Manage Cars");
+		heading = new JLabel("View Cars");
 		DefaultTableModel model = new DefaultTableModel(cars, tableHeadings);
 		carTable = new JTable(model);
 		logoutBtn = new JButton("Logout");
@@ -45,8 +40,8 @@ public class ViewCarsPanel extends CPanel {
 				String strId = (String) table.getModel().getValueAt(0, 0);
 				if(strId != null) {
 					int id = Integer.parseInt(strId);
-//					new BuyCarPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
-//					detachFromParentFrame();
+					new BuyCarPanel(Application.WinWidth, Application.WinHeight, id).attachTo(parentFrame);
+					detachFromParentFrame();
 				}
 			}
 		};

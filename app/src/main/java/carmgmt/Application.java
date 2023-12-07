@@ -1,7 +1,6 @@
 package carmgmt;
 
 import carmgmt.backend.Server;
-import carmgmt.car.ViewCarsPanel;
 
 public class Application {
 	WindowFrame windowFrame;

@@ -29,15 +29,9 @@ public class CustomerRegistrationPanel extends CPanel {
 	private JLabel registerSuccess;
 	private JButton showPasswordBtn;
 	private JButton registerBtn, backBtn;
-	private GridBagConstraints gbc;
 	
 	public CustomerRegistrationPanel(int width, int height) {
-		setBounds(0, 0, width, height);
-		setBackground(new Color(50, 50, 50, 255));
-		
-		setLayout(new GridBagLayout());
-		
-		gbc = new GridBagConstraints();
+		super(width, height);
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
 		heading = new JLabel("Customer Registration");

@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddCarPanel extends CPanel {
-	private GridBagConstraints gbc;
 	private JLabel modelLabel;
 	private JLabel yearLabel;
 	private JLabel costLabel;
@@ -20,11 +19,8 @@ public class AddCarPanel extends CPanel {
 	private JButton addCarBtn, backBtn;
 	
 	public AddCarPanel(int width, int height) {
-		setBounds(0, 0, width, height);
-		setBackground(new Color(50, 50, 50, 255));
+		super(width, height);
 		
-		setLayout(new GridBagLayout());
-		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5); // Setting insets for spacing
 		
 		heading = new JLabel("Add Car");
