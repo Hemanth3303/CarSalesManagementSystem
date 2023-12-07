@@ -97,7 +97,7 @@ public class AddCarPanel extends CPanel {
 		});
 		
 		backBtn.addActionListener(e -> {
-			new ViewCarsPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
+			new ManageCarsPanel(Application.WinWidth, Application.WinHeight).attachTo(parentFrame);
 			detachFromParentFrame();
 		});
 	}
