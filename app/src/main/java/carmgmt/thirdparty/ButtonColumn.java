@@ -6,8 +6,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 
-// https://github.com/tips4java/tips4java/blob/main/source/ButtonColumn.java
-
 /**
  * The ButtonColumn class provides a renderer and an editor that looks like a
  * JButton. The renderer and editor will then be used for a specified column
